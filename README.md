@@ -4,7 +4,7 @@
 
 Вы можете увидеть демо-версию приложения по следующей ссылке:
 
-[Демо-приложение](https://ton-test-task.vercel.app)
+[Демо-приложение](https://romans-pixel-mindbox-todo.vercel.app)
 
 ## Описание
 
