@@ -21,7 +21,7 @@ export function Todos({ filteredTodos, todos, setTodos }: TodosProps) {
   };
 
   return (
-    <div className="border-t border-slate-200">
+    <div className="max-h-[60vh] overflow-scroll border-t border-slate-200">
       {filteredTodos.length ? (
         filteredTodos.map((todo) => (
           <TodoItem

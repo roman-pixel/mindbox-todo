@@ -20,7 +20,7 @@ const App: React.FC = () => {
         <h1 className="mb-6 text-center text-8xl font-thin text-red-500/40">
           todos
         </h1>
-        <div className="relative w-[550px] border-b bg-white shadow-[0_-2px_20px_rgba(0,0,0,0.1)]">
+        <div className="relative max-h-max w-[550px] border-b bg-white shadow-[0_-2px_20px_rgba(0,0,0,0.1)]">
           <TodoAdd
             todos={todos}
             setTodos={setTodos}

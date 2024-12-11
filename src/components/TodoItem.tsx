@@ -44,7 +44,7 @@ export function TodoItem({
         {label}
       </span>
       <button
-        className="rounded-full p-1 text-slate-600 opacity-100 transition-all duration-300 hover:bg-slate-100 group-hover:opacity-100"
+        className="rounded-full p-1 text-slate-600 opacity-0 transition-all duration-300 hover:bg-slate-100 group-hover:opacity-100"
         onClick={onDelete}
       >
         <svg
