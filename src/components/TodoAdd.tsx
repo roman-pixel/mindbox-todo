@@ -36,7 +36,7 @@ export function TodoAdd({
     <div className="relative flex items-center shadow-sm">
       <button
         className={clsx(
-          `h-9 w-16 text-2xl text-slate-600 transition-transform duration-200`,
+          `h-9 w-16 text-xl text-slate-600 transition-transform duration-200 sm:text-2xl`,
           {
             "rotate-90 text-slate-600/70": isExpanded,
           },
@@ -47,7 +47,7 @@ export function TodoAdd({
       </button>
       <input
         data-testid="add-todo-input"
-        className="grow p-4 text-2xl placeholder:font-extralight placeholder:italic placeholder:text-slate-400/50"
+        className="grow p-4 text-xl placeholder:font-extralight placeholder:italic placeholder:text-slate-400/50 sm:text-2xl"
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

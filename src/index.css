@@ -6,3 +6,17 @@ body {
   background-color: #f5f5f5;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
+
+@media (pointer: coarse) {
+  /* Стили для сенсорных экранов */
+  .delete-button {
+    opacity: 1;
+  }
+}
+
+@media (pointer: fine) {
+  /* Стили для устройств с мышью */
+  .delete-button {
+    opacity: 0;
+  }
+}

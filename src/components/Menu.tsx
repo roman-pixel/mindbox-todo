@@ -16,7 +16,7 @@ export function Menu({ todos, setTodos, filter, setFilter }: MenuProps) {
   };
 
   return (
-    <div className="flex items-center justify-between border-t px-5 py-2 text-sm text-slate-500">
+    <div className="flex flex-wrap items-center justify-between gap-4 border-t px-5 py-2 text-sm text-slate-500">
       <span>
         {`${activeTodos.length} item${activeTodos.length > 1 ? "s" : ""} left`}
       </span>

@@ -33,7 +33,7 @@ export function Todos({ filteredTodos, todos, setTodos }: TodosProps) {
           />
         ))
       ) : (
-        <div className="py-4 text-center text-2xl text-slate-600/50">
+        <div className="py-4 text-center text-lg text-slate-600/50 sm:text-2xl">
           No todos found
         </div>
       )}
