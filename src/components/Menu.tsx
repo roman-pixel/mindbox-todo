@@ -1,12 +1,14 @@
-import { Todo } from "../types";
+import { FilterType, Todo } from "../types";
 import { FilterButtons } from "./FilterButtons";
 
 interface MenuProps {
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
+  filter: FilterType;
+  setFilter: (filter: FilterType) => void;
 }
 
-export function Menu({ todos, setTodos }: MenuProps) {
+export function Menu({ todos, setTodos, filter, setFilter }: MenuProps) {
   const activeTodos = todos.filter((todo) => !todo.completed);
 
   const clearCompleted = () => {
@@ -19,7 +21,7 @@ export function Menu({ todos, setTodos }: MenuProps) {
         {`${activeTodos.length} item${activeTodos.length > 1 ? "s" : ""} left`}
       </span>
 
-      <FilterButtons />
+      <FilterButtons filter={filter} setFilter={setFilter} />
 
       {todos.some((todo) => todo.completed) && (
         <button

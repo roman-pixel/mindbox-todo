@@ -32,11 +32,12 @@ describe("Todo App", () => {
     fireEvent.change(input, { target: { value: "Test todo" } });
     fireEvent.keyDown(input, { key: "Enter", code: 13, charCode: 13 });
 
-    const checkbox = screen.getByTestId("todo-checkbox");
-    fireEvent.click(checkbox);
+    const checkbox = screen.getAllByTestId("todo-checkbox").at(-1);
+
+    if (checkbox) fireEvent.click(checkbox);
 
     expect(screen.getByText("Test todo")).toHaveClass(
-      "text-slate-800/40",
+      "text-slate-500/60",
       "line-through",
     );
   });
@@ -53,7 +54,8 @@ describe("Todo App", () => {
     fireEvent.change(input, { target: { value: "Completed todo" } });
     fireEvent.keyDown(input, { key: "Enter", code: 13, charCode: 13 });
     const checkboxes = screen.getAllByTestId("todo-checkbox");
-    fireEvent.click(checkboxes[1]);
+    const checkbox = checkboxes.at(-1);
+    if (checkbox) fireEvent.click(checkbox);
 
     // Test "Active" filter
     fireEvent.click(screen.getByText("Active"));
@@ -87,6 +89,19 @@ describe("Todo App", () => {
     expect(screen.getByText("Test todo")).toBeInTheDocument();
   });
 
+  test("delete one todo", () => {
+    render(<App />);
+
+    const input = screen.getAllByTestId("add-todo-input")[0];
+    fireEvent.change(input, { target: { value: "Test todo" } });
+    fireEvent.keyDown(input, { key: "Enter", code: 13, charCode: 13 });
+
+    const deleteButton = screen.getAllByTestId("todo-delete-button").at(-1);
+    if (deleteButton) fireEvent.click(deleteButton);
+
+    expect(screen.queryByText("Test todo")).not.toBeInTheDocument();
+  });
+
   test("clears completed todos", () => {
     render(<App />);
 
@@ -94,8 +109,8 @@ describe("Todo App", () => {
     fireEvent.change(input, { target: { value: "Test todo" } });
     fireEvent.keyDown(input, { key: "Enter", code: 13, charCode: 13 });
 
-    const checkbox = screen.getByRole("checkbox");
-    fireEvent.click(checkbox);
+    const checkbox = screen.getAllByTestId("todo-checkbox").at(-1);
+    if (checkbox) fireEvent.click(checkbox);
 
     const clearButton = screen.getByText("Clear completed");
     fireEvent.click(clearButton);

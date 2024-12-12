@@ -44,6 +44,7 @@ export function TodoItem({
         {label}
       </span>
       <button
+        data-testid="todo-delete-button"
         className="delete-button rounded-full p-1 text-slate-600 transition-all duration-300 hover:bg-slate-100 group-hover:opacity-100"
         onClick={onDelete}
       >
