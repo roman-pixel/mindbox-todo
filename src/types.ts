@@ -2,6 +2,6 @@ export type FilterType = "all" | "active" | "completed";
 
 export interface Todo {
   id: number;
-  text: string;
+  title: string;
   completed: boolean;
 }

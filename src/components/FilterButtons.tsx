@@ -1,32 +1,11 @@
-import { FilterType } from "../types";
 import { FilterButton } from "./FilterButton";
 
-interface FilterButtonsProps {
-  filter: string;
-  setFilter: (filter: FilterType) => void;
-}
-
-export function FilterButtons({ filter, setFilter }: FilterButtonsProps) {
+export function FilterButtons() {
   return (
     <div className="flex justify-center gap-1">
-      <FilterButton
-        label="All"
-        filterValue="all"
-        filter={filter}
-        setFilter={setFilter}
-      />
-      <FilterButton
-        label="Active"
-        filterValue="active"
-        filter={filter}
-        setFilter={setFilter}
-      />
-      <FilterButton
-        label="Completed"
-        filterValue="completed"
-        filter={filter}
-        setFilter={setFilter}
-      />
+      <FilterButton label="All" filterValue="all" />
+      <FilterButton label="Active" filterValue="active" />
+      <FilterButton label="Completed" filterValue="completed" />
     </div>
   );
 }

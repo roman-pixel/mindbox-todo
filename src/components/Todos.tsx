@@ -1,13 +1,32 @@
-import { Todo } from "../types";
+import { useSearchParams } from "react-router-dom";
+
+import { FilterType, Todo } from "../types";
 import { TodoItem } from "./TodoItem";
 
 interface TodosProps {
-  filteredTodos: Todo[];
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
 }
 
-export function Todos({ filteredTodos, todos, setTodos }: TodosProps) {
+export function Todos({ todos, setTodos }: TodosProps) {
+  const [searchParam] = useSearchParams();
+
+  const filteredTodos = todos.filter((todo) => {
+    if (searchParam.has("filter")) {
+      const filter = searchParam.get("filter") as FilterType;
+
+      const filters = {
+        active: (todo: Todo) => !todo.completed,
+        completed: (todo: Todo) => todo.completed,
+        all: () => true,
+      };
+
+      return filters[filter] ? filters[filter](todo) : true;
+    } else {
+      return false;
+    }
+  });
+
   const toggleTodo = (id: number) => {
     setTodos(
       todos.map((todo) =>
@@ -26,7 +45,7 @@ export function Todos({ filteredTodos, todos, setTodos }: TodosProps) {
         filteredTodos.map((todo) => (
           <TodoItem
             key={todo.id}
-            label={todo.text}
+            label={todo.title}
             completed={todo.completed}
             onChange={() => toggleTodo(todo.id)}
             onDelete={() => deleteTodo(todo.id)}

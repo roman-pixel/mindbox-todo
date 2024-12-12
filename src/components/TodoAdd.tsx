@@ -18,13 +18,13 @@ export function TodoAdd({
 }: TodoAddProps) {
   const [inputValue, setInputValue] = useState("");
 
-  const addTodo = (text: string) => {
-    if (text.trim()) {
+  const addTodo = (title: string) => {
+    if (title.trim()) {
       setTodos([
         ...todos,
         {
           id: todos.length ? Math.max(...todos.map((t) => t.id)) + 1 : 1,
-          text,
+          title,
           completed: false,
         },
       ]);

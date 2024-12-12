@@ -38,7 +38,7 @@ export function TodoItem({
       </label>
       <span
         className={clsx(`break-all text-slate-800/90`, {
-          "text-slate-800/40 line-through": completed,
+          "text-slate-500/60 line-through": completed,
         })}
       >
         {label}

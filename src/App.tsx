@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { Menu, TodoAdd, Todos } from "./components";
-import { Todo, FilterType } from "./types";
+import { Todos as TodosData } from "./data/todos";
+import { Todo } from "./types";
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [filter, setFilter] = useState<FilterType>("all");
+  const [todos, setTodos] = useState<Todo[]>(TodosData);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return !todo.completed;
-    if (filter === "completed") return todo.completed;
-    return true;
-  });
+  useEffect(() => {
+    if (!searchParams.has("filter")) {
+      setSearchParams((prevParams) => {
+        prevParams.set("filter", "all");
+        return prevParams;
+      });
+    }
+  }, [searchParams, setSearchParams]);
 
   return (
     <div className="flex h-screen justify-center">
@@ -28,22 +33,9 @@ const App: React.FC = () => {
             setIsExpanded={setIsExpanded}
           />
 
-          {isExpanded && (
-            <Todos
-              filteredTodos={filteredTodos}
-              todos={todos}
-              setTodos={setTodos}
-            />
-          )}
+          {isExpanded && <Todos todos={todos} setTodos={setTodos} />}
 
-          {todos.length > 0 && (
-            <Menu
-              filter={filter}
-              setFilter={setFilter}
-              todos={todos}
-              setTodos={setTodos}
-            />
-          )}
+          {todos.length > 0 && <Menu todos={todos} setTodos={setTodos} />}
 
           <div className="absolute -bottom-2 left-1/2 -z-10 h-2 w-[98%] -translate-x-1/2 border-b bg-white shadow-md" />
           <div className="absolute -bottom-4 left-1/2 -z-20 h-2 w-[96%] -translate-x-1/2 border-b bg-white shadow-md" />
